@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'to_do#main'
+  post '/add_list', controller: "to_do", action: :add_list
+  post '/delete_list', controller: "to_do", action: :delete_list
+  get '/select_list', controller: "to_do", action: :select_list
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

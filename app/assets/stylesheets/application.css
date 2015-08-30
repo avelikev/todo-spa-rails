@@ -17,85 +17,115 @@
 body {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-
-.comment {
-	text-indent: 48px;
+h2 {
+	text-align: center;
+	font-weight: normal;
+	font-size: 24px;
+	margin: 25px 10px;
+}
+h3 {
+	font-weight: normal;
+	font-size: 19px;
+	margin: 25px 0px;
 }
 
+
+.hide {
+	display: none;
+}
+
+
+/* Sidebar */
 .sideBar {
 	position: absolute;
 	left: 0;
 	top: 0;
 	height: 100%;
 	width: 25%;
-    background-color: #80DEEA;
+	background-color: #80DEEA;
+	overflow: auto;
 }
+.sideBar ul {
+	list-style-type: none;
+	padding: 0px 0px 0px 24px;
+}
+.sideBar li {
+	font-size: 16px;
+	box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2) inset;
+	overflow: hidden;
+}
+.sideBar .addListForm {
+	height: auto;
+	overflow: auto;
+	padding: 10px 0px 10px 24px;
+	line-height: 28px;
+}
+.sideBar .addListForm input {
+	height: 24px;
+	width: 80%;
+	font-size: 16px;
+}
+.sideBar .addListForm div {
+	float: right;
+	padding: 0px 52px;
+}
+.sideBar .selectedList {
+	background-color: #00BCD4;
+}
+.addNewList {
+	cursor: pointer;
+	cursor: hand;
+	padding: 10px 0px 10px 48px;
+	line-height: 28px;
+}
+.addNewList img {
+	height: 11px;
+	width: 11px;
+}
+.viewList {
+	display: inline-block;
+	padding: 10px 0px 10px 48px;
+	line-height: 28px;
+	width: calc( 100% - 88px );
+	cursor: pointer;
+	cursor: hand;
+}
+.deleteList {
+	float: right;
+	margin: 10px;
+	padding: 0px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	border-radius: 15%;
+	background-color: #E0F7FA;
+	cursor: pointer;
+	cursor: hand;
+}
+.deleteList img {
+	height: 14px;
+	width: 14px;
+	padding: 4px 3px 2px 3px;
+}
+
+
+/* Main Section */
 .mainSection {
 	position: absolute;
 	right: 0;
 	top: 0;
 	height: 100%;
 	width: 75%;
+	background-color: #E0F7FA;
 }
-.todoList {
-	float: left;
-	height: 100%;
-	width: 50%;
-    background-color: #E0F7FA;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-}
-.doneList {
-	float: right;
-	height: 100%;
-	width: 50%;
-    background-color: #E0F7FA;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-
-h2 {
-	text-align: center;
-	font-weight: normal;
-	font-size: 24px;
-	margin: 25px 0px;
-}
-h3 {
-	position: relative;
-	height: 48px;
-	line-height: 48px;
-	font-size: 19px;
-	font-weight: normal;
-}
-
-
-.sideBar ul {
-	list-style-type: none;
-    padding: 0px 0px 0px 24px;
-}
-.sideBar li {
-	position: relative;
-	height: 48px;
-	line-height: 48px;
-	font-size: 16px;
-	text-indent: 48px;
-	box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2) inset;
-	overflow: hidden;
-}
-.addNewList img {
-	height: 11px;
-	width: 11px;
-}
-
 .mainSection ul {
 	list-style-type: none;
 	padding: 0px;
-    margin: 0px 54px;
+	margin: 0px 54px;
 }
 .mainSection li {
 	margin: 12px 0px;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 5px;
 	background-color: #FFFFFF;
 }
 .listItem {
@@ -103,31 +133,35 @@ h3 {
 	line-height: 22px;
 	font-size: 15px;
 	display: inline-block;
-	width: 80%;
+	width: calc( 100% - 70px );
 }
-.deleteItem {
-	float: right;
-	margin: 10px;
-	padding: 0px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-	border-radius: 50%;
+
+
+/* To-Do Section */
+.todoList {
+	float: left;
+	height: 100%;
+	width: 50%;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	overflow: auto;
 }
 .checkBox {
 	float: right;
 	margin: 10px;
 	padding: 0px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-	border-radius: 50%;
-}
-.deleteItem img {
-	height: 14px;
-	width: 14px;
-	padding: 4px 3px 2px 3px;
+	border-radius: 15%;
+	background-color: #E0F7FA;
 }
 .checkBox img {
 	height: 17px;
 	width: 17px;
 	padding: 3px 2px 0px 1px;
+}
+.addNewItem {
+	cursor: pointer;
+	cursor: hand;
+	display: inline-block;
 }
 .addNewItem img {
 	height: 11px;
@@ -135,18 +169,27 @@ h3 {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+/* Completed Section */
+.completedList {
+	float: right;
+	height: 100%;
+	width: 50%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	overflow: auto;
+}
+.deleteItem {
+	float: right;
+	margin: 10px;
+	padding: 0px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	border-radius: 15%;
+	background-color: #E0F7FA;
+}
+.deleteItem img {
+	height: 14px;
+	width: 14px;
+	padding: 4px 3px 2px 3px;
+}
 
 
 

@@ -1,88 +1,18 @@
 <div class="sideBar">
-	<ul>
-		<h3>
-			Your Lists:
-		</h3>
-		<li>
-			list 1
-		</li>
-		<li>
-			list 2
-		</li>
-		<li>
-			list 3
-		</li>
-		<li class="addNewList">
-			<img src="/icons/plus-24-16.png">
-			Add New List
-		</li>
-	</ul>
+	<%= render "sidebar" %>
 </div>
 <div class="mainSection">
 	<div class="todoList">
-		<h2>
-			To-Do List
-		</h2>
-		<ul>
-			<li>
-				<div class="listItem">
-					item 1
-				</div>
-				<div class="checkBox">
-					<img src="/icons/checkmark-round.png">
-				</div>
-			</li>
-			<li>
-				<div class="listItem">
-					item 2
-				</div>
-				<div class="checkBox">
-					<img src="/icons/checkmark-round.png">
-				</div>
-			</li>
-			<li>
-				<div class="listItem">
-					item 3 is really really really really really really long
-				</div>
-				<div class="checkBox">
-					<img src="/icons/checkmark-round.png">
-				</div>
-			</li>
-			<div class="addNewItem">
-				<img src="/icons/plus-24-16.png">
-				Add New Item
-			</div>
-		</ul>
+		<% if @lists.any? %>
+			<h2>
+				Select a list from the sidebar!
+			</h2>
+		<% else %>
+			<h2>
+				Use the sidebar to create a list!
+			</h2>
+		<% end %>
 	</div>
-	<div class="doneList">
-		<h2>
-			Completed Items
-		</h2>
-		<ul>
-			<li>
-				<div class="listItem">
-					item 1
-				</div>
-				<div class="deleteItem">
-					<img src="/icons/cross-24-48.png">
-				</div>
-			</li>
-			<li>
-				<div class="listItem">
-					item 1
-				</div>
-				<div class="deleteItem">
-					<img src="/icons/cross-24-48.png">
-				</div>
-			</li>
-			<li>
-				<div class="listItem">
-					item 1
-				</div>
-				<div class="deleteItem">
-					<img src="/icons/cross-24-48.png">
-				</div>
-			</li>
-		</ul>
+	<div class="completedList">
 	</div>
 </div>

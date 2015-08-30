@@ -1,0 +1,7 @@
+$('.sideBar').html(
+	'<%= escape_javascript( render( partial: 'sidebar' ) ) %>'
+);
+
+<% if @selected_list !=  nil %>
+	selectList( <%= @selected_list.id %> );
+<% end %>

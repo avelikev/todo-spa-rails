@@ -1,0 +1,30 @@
+<ul>
+	<h3>
+		Your To-Do Lists:
+	</h3>
+
+	<% @lists.each do |list| %>
+		<li>
+			<div class="viewList" data-list-id="<%= list.id %>">
+				<%= list.name %>
+			</div>
+			<div class="deleteList">
+				<img src="/icons/cross-24-48.png">
+			</div>
+		</li>
+	<% end %>
+
+	<li class="addListForm hide">
+		<input onkeypress="return checkSubmit(event)">
+		</input>
+		<div>
+			<button class="saveButton"> Save </button>
+			<button class="cancelButton"> Cancel </button>
+		</div>
+	</li>
+
+	<li class="addNewList">
+		<img src="/icons/plus-24-16.png">
+		Add New List
+	</li>
+</ul>
