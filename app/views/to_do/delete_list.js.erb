@@ -8,7 +8,7 @@ $('.sideBar').html(
 
 <% if @refreshMainSection == true %>
 	$('.todoList').html(
-		'<%= escape_javascript( render( partial: 'helpfulMessage', locals:{ all_lists: @lists } ) ) %>'
+		'<%= escape_javascript( render( partial: 'helpful_message', locals:{ all_lists: @lists } ) ) %>'
 	);
 
 	$('.completedList').html('');
