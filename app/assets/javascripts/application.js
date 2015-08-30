@@ -15,8 +15,21 @@
 //= require turbolinks
 //= require_tree .
 
-function selectList(id) {
-	var selectedID = id;
+function markCompleted( listItemID ) {
+	var markCompletedData = { "list_item_id": listItemID };
+	$.ajax({
+		type:"POST",
+		url:"/mark_completed",
+		data: markCompletedData,
+		success:function () {
+		},
+		error:function (xhr, msg, error) {
+			alert( "Something went wrong." );
+		}
+	});
+}
+
+function selectList( selectedID ) {
 	var selectListData = { "id": selectedID };
 	$.ajax({
 		type:"GET",
@@ -30,8 +43,8 @@ function selectList(id) {
 	});
 }
 
-function submitNewList() {
-	var inputValue = $('.addListForm').find('input').val();
+function addNewList() {
+	var inputValue = $('.addNewListForm').find('input').val();
 	var addListData = { "name": inputValue };
 	$.ajax({
 		type:"POST",
@@ -45,13 +58,28 @@ function submitNewList() {
 	});
 }
 
-function deleteList(id) {
+function addNewListItem() {
+	var itemDescription = $('.addNewItemForm').find('input').val();
+	var listID =  $('.addNewItemForm').attr('data-list-id');
+	var addListItemData = { "list_id": listID, "description": itemDescription };
+	$.ajax({
+		type:"POST",
+		url:"/add_list_item",
+		data: addListItemData,
+		success:function () {
+		},
+		error:function (xhr, msg, error) {
+			alert( "Something went wrong." );
+		}
+	});
+}
+
+function deleteList( deletedID ) {
 	var selectedItem = $('.viewList .selectedList');
 	var selectedID = null;
 	if ( selectedItem.length ) {
 		var selectedID = selectedItem.first().attr('data-list-id');
 	}
-	var deletedID = id;
 	var deleteListData = { "id": deletedID, "selected_id": selectedID };
 	$.ajax({
 		type:"POST",
@@ -65,21 +93,38 @@ function deleteList(id) {
 	});
 }
 
-function checkSubmit(e) {
+function checkListSubmit( e ) {
 	if ( e.keyCode == 13 ) {
-		submitNewList();
+		addNewList();
 	}
 }
 
-function addSelectedClassToList(id) {
+function checkItemSubmit( e ) {
+	var list_id = $( '.addNewItemForm' ).attr('data-list-id');
+	if ( e.keyCode == 13 ) {
+		addNewListItem();
+	}
+}
+
+function addSelectedClassToList( id ) {
 	$('.viewList[data-list-id='+id+']').parent().addClass('selectedList');
 }
 
 function deselectAllLists() {
 	$('.selectedList').each( function() {
+		// weird jquery bug
+		// want to remove just selectedList class instead of removing all classes
+		// but it fails to remove the class
+		// apparently a common issue on jquery forums
+		// $(this).removeClass('selectedList');
 		$(this).removeClass();
 	} );
 }
+
+$(document).on('click', '.checkBox', function(){
+	var listItemID = $(this).parent().find('.listItem').attr('data-list-item-id');
+	markCompleted( listItemID );
+});
 
 $(document).on('click', '.viewList', function(){
 	var selectedID = $(this).attr('data-list-id');
@@ -93,16 +138,36 @@ $(document).on('click', '.deleteList', function(){
 
 $(document).on('click', '.addNewList', function(){
 	$('.addNewList').addClass('hide');
-	$('.addListForm').removeClass('hide');
-	$('.addListForm').find('input').focus();
+	$('.addNewListForm').removeClass('hide');
+	$('.addNewListForm').find('input').focus();
 });
 
-$(document).on('click', '.addListForm .cancelButton', function(){
+$(document).on('click', '.addNewListForm .cancelButton', function(){
 	$('.addNewList').removeClass('hide');
-	$('.addListForm').addClass('hide');
-	$('.addListForm').find('input').val("");
+	$('.addNewListForm').addClass('hide');
+	$('.addNewListForm').find('input').val("");
 });
 
-$(document).on('click', '.addListForm .saveButton', function(){
-	submitNewList();
+$(document).on('click', '.addNewListForm .saveButton', function(){
+	addNewList();
 });
+
+$(document).on('click', '.addNewItem', function(){
+	$('.addNewItem').addClass('hide');
+	$('.addNewItemForm').removeClass('hide');
+	$('.addNewItemForm').find('input').focus();
+});
+
+$(document).on('click', '.addNewItemForm .cancelButton', function(){
+	$('.addNewItem').removeClass('hide');
+	$('.addNewItemForm').addClass('hide');
+	$('.addNewItemForm').find('input').val("");
+});
+
+$(document).on('click', '.addNewItemForm .saveButton', function(){
+	addNewListItem();
+});
+
+
+
+

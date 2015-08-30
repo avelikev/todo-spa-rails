@@ -31,7 +31,7 @@ h3 {
 
 
 .hide {
-	display: none;
+	display: none !important;
 }
 
 
@@ -54,20 +54,27 @@ h3 {
 	box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2) inset;
 	overflow: hidden;
 }
-.sideBar .addListForm {
-	height: auto;
-	overflow: auto;
-	padding: 10px 0px 10px 24px;
+.sideBar .addNewListForm {
+	padding: 6px 40px 6px 24px;
 	line-height: 28px;
 }
-.sideBar .addListForm input {
-	height: 24px;
-	width: 80%;
-	font-size: 16px;
-}
-.sideBar .addListForm div {
+.sideBar .addNewListForm input {
 	float: right;
-	padding: 0px 52px;
+	height: 24px;
+	width: 100%;
+	font-size: 16px;
+	margin: 4px;
+}
+.sideBar .addNewListForm div {
+	float: right;
+}
+.sideBar .addNewListForm button {
+	background-color: #1976D2;
+	color: #FFFFFF;
+	float: right;
+	padding: 6px 16px;
+	margin: 3px 4px;
+	border-radius: 10px;
 }
 .sideBar .selectedList {
 	background-color: #00BCD4;
@@ -152,6 +159,8 @@ h3 {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 	border-radius: 15%;
 	background-color: #E0F7FA;
+	cursor: pointer;
+	cursor: hand;
 }
 .checkBox img {
 	height: 17px;
@@ -166,6 +175,27 @@ h3 {
 .addNewItem img {
 	height: 11px;
 	width: 11px;
+}
+.todoList .addNewItemForm {
+	padding: 10px 0px 10px 0px;
+	line-height: 28px;
+}
+.todoList .addNewItemForm input {
+	height: 24px;
+	width: 100%;
+	font-size: 16px;
+}
+.todoList .addNewItemForm div {
+	float: right;
+	padding: 6px 0px;
+}
+.todoList .addNewItemForm button {
+	background-color: #1976D2;
+	color: #FFFFFF;
+	float: right;
+	padding: 6px 16px;
+	margin: 3px 4px;
+	border-radius: 10px;
 }
 
 
@@ -184,6 +214,8 @@ h3 {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 	border-radius: 15%;
 	background-color: #E0F7FA;
+	cursor: pointer;
+	cursor: hand;
 }
 .deleteItem img {
 	height: 14px;

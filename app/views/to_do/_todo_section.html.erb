@@ -2,30 +2,26 @@
 	To-Do List
 </h2>
 <ul>
-	<li>
-		<div class="listItem">
-			item 1
+	<% current_list.list_items.each do |list_item| %>
+		<% if not list_item.completed %>
+			<li>
+				<div class="listItem" data-list-item-id="<%= list_item.id %>">
+					<%= list_item.description %>
+				</div>
+				<div class="checkBox">
+					<img src="/icons/checkmark-round.png">
+				</div>
+			</li>
+		<% end %>
+	<% end %>
+	<div class="addNewItemForm hide" data-list-id="<%= current_list.id %>">
+		<input onkeypress="return checkItemSubmit( event )">
+		</input>
+		<div>
+			<button class="saveButton"> Save </button>
+			<button class="cancelButton"> Cancel </button>
 		</div>
-		<div class="checkBox">
-			<img src="/icons/checkmark-round.png">
-		</div>
-	</li>
-	<li>
-		<div class="listItem">
-			item 2
-		</div>
-		<div class="checkBox">
-			<img src="/icons/checkmark-round.png">
-		</div>
-	</li>
-	<li>
-		<div class="listItem">
-			item 3 is really really really really really really long
-		</div>
-		<div class="checkBox">
-			<img src="/icons/checkmark-round.png">
-		</div>
-	</li>
+	</div>
 	<div class="addNewItem">
 		<img src="/icons/plus-24-16.png">
 		Add New Item

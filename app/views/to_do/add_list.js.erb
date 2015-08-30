@@ -2,5 +2,13 @@ $('.sideBar').html(
 	'<%= escape_javascript( render( partial: 'sidebar' ) ) %>'
 );
 
+$('.todoList').html(
+	'<%= escape_javascript( render( partial: 'todo_section', locals:{ current_list: @list } ) ) %>'
+);
+
+$('.completedList').html(
+	'<%= escape_javascript( render( partial: 'completed_section', locals:{ current_list: @list } ) ) %>'
+);
+
 deselectAllLists();
 addSelectedClassToList( <%= @list.id %> );
