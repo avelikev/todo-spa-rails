@@ -2,4 +2,5 @@ $('.sideBar').html(
 	'<%= escape_javascript( render( partial: 'sidebar' ) ) %>'
 );
 
-selectList( <%= @list.id %> );
+deselectAllLists();
+addSelectedClassToList( <%= @list.id %> );

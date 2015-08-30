@@ -15,6 +15,21 @@
 //= require turbolinks
 //= require_tree .
 
+function selectList(id) {
+	var selectedID = id;
+	var selectListData = { "id": selectedID };
+	$.ajax({
+		type:"GET",
+		url:"/select_list",
+		data: selectListData,
+		success:function () {
+		},
+		error:function (xhr, msg, error) {
+			alert( "Something went wrong." );
+		}
+	});
+}
+
 function submitNewList() {
 	var inputValue = $('.addListForm').find('input').val();
 	var addListData = { "name": inputValue };
@@ -56,15 +71,20 @@ function checkSubmit(e) {
 	}
 }
 
-function selectList(id) {
+function addSelectedClassToList(id) {
 	$('.viewList[data-list-id='+id+']').parent().addClass('selectedList');
 }
 
 function deselectAllLists() {
 	$('.selectedList').each( function() {
-		$(this).removeClass('.selectedList');
+		$(this).removeClass();
 	} );
 }
+
+$(document).on('click', '.viewList', function(){
+	var selectedID = $(this).attr('data-list-id');
+	selectList( selectedID );
+});
 
 $(document).on('click', '.deleteList', function(){
 	var deletedID = $(this).parent().find('.viewList').attr('data-list-id');

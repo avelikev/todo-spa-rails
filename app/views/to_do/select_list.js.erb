@@ -1,0 +1,10 @@
+deselectAllLists();
+addSelectedClassToList( <%= @list.id %> );
+
+$('.todoList').html(
+	'<%= escape_javascript( render( partial: 'todo_section', locals:{ list: @list } ) ) %>'
+);
+
+$('.completedList').html(
+	'<%= escape_javascript( render( partial: 'completed_section', locals:{ list: @list } ) ) %>'
+);

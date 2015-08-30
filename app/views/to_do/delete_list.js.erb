@@ -3,5 +3,5 @@ $('.sideBar').html(
 );
 
 <% if @selected_list !=  nil %>
-	selectList( <%= @selected_list.id %> );
+	addSelectedClassToList( <%= @selected_list.id %> );
 <% end %>
