@@ -69,7 +69,7 @@ h3 {
 	float: right;
 }
 .sideBar .addNewListForm button {
-	background-color: #1976D2;
+	background-color: #00838F;
 	color: #FFFFFF;
 	float: right;
 	padding: 6px 16px;
@@ -190,7 +190,7 @@ h3 {
 	padding: 6px 0px;
 }
 .todoList .addNewItemForm button {
-	background-color: #1976D2;
+	background-color: #00838F;
 	color: #FFFFFF;
 	float: right;
 	padding: 6px 16px;
