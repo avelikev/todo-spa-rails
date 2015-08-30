@@ -110,21 +110,24 @@ h3 {
 	margin: 10px;
 	padding: 0px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	border-radius: 50%;
 }
 .checkBox {
 	float: right;
 	margin: 10px;
 	padding: 0px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	border-radius: 50%;
 }
 .deleteItem img {
-	height: 16px;
-	width: 16px;
-	padding: 3px 2px 1px 2px;
+	height: 14px;
+	width: 14px;
+	padding: 4px 3px 2px 3px;
 }
 .checkBox img {
-	height: 20px;
-	width: 20px;
+	height: 17px;
+	width: 17px;
+	padding: 3px 2px 0px 1px;
 }
 .addNewItem img {
 	height: 11px;
