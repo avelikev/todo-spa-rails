@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/add_list', controller: "to_do", action: :add_list
   post '/add_list_item', controller: "to_do", action: :add_list_item
   post '/delete_list', controller: "to_do", action: :delete_list
+  post '/delete_list_item', controller: "to_do", action: :delete_list_item
   post '/mark_completed', controller: "to_do", action: :mark_completed
 
   # Example of regular route:

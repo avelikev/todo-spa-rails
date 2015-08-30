@@ -75,16 +75,30 @@ function addNewListItem() {
 }
 
 function deleteList( deletedID ) {
-	var selectedItem = $('.viewList .selectedList');
+	var selectedItem = $('.selectedList');
 	var selectedID = null;
 	if ( selectedItem.length ) {
-		var selectedID = selectedItem.first().attr('data-list-id');
+		selectedID = selectedItem.first().find('.viewList').attr('data-list-id');
 	}
 	var deleteListData = { "id": deletedID, "selected_id": selectedID };
 	$.ajax({
 		type:"POST",
 		url:"/delete_list",
 		data: deleteListData,
+		success:function () {
+		},
+		error:function (xhr, msg, error) {
+			alert( "Something went wrong." );
+		}
+	});
+}
+
+function deleteListItem( deletedID ) {
+	var deleteListItemData = { "list_item_id": deletedID };
+	$.ajax({
+		type:"POST",
+		url:"/delete_list_item",
+		data: deleteListItemData,
 		success:function () {
 		},
 		error:function (xhr, msg, error) {
@@ -134,6 +148,11 @@ $(document).on('click', '.viewList', function(){
 $(document).on('click', '.deleteList', function(){
 	var deletedID = $(this).parent().find('.viewList').attr('data-list-id');
 	deleteList( deletedID );
+});
+
+$(document).on('click', '.deleteItem', function(){
+	var deletedID = $(this).parent().find('.listItem').attr('data-list-item-id');
+	deleteListItem( deletedID );
 });
 
 $(document).on('click', '.addNewList', function(){

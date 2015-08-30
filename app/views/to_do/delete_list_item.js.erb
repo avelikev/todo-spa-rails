@@ -1,0 +1,3 @@
+$('.completedList').html(
+	'<%= escape_javascript( render( partial: 'completed_section', locals:{ current_list: @list } ) ) %>'
+);

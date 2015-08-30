@@ -2,28 +2,16 @@
 	Completed Items
 </h2>
 <ul>
-	<li>
-		<div class="listItem">
-			item 1
-		</div>
-		<div class="deleteItem">
-			<img src="/icons/cross-24-48.png">
-		</div>
-	</li>
-	<li>
-		<div class="listItem">
-			item 1
-		</div>
-		<div class="deleteItem">
-			<img src="/icons/cross-24-48.png">
-		</div>
-	</li>
-	<li>
-		<div class="listItem">
-			item 1
-		</div>
-		<div class="deleteItem">
-			<img src="/icons/cross-24-48.png">
-		</div>
-	</li>
+	<% current_list.list_items.each do |list_item| %>
+		<% if list_item.completed %>
+			<li>
+				<div class="listItem" data-list-item-id="<%= list_item.id %>">
+					<%= list_item.description %>
+				</div>
+				<div class="deleteItem">
+					<img src="/icons/cross-24-48.png">
+				</div>
+			</li>
+		<% end %>
+	<% end %>
 </ul>

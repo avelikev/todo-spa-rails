@@ -49,6 +49,16 @@ class ToDoController < ApplicationController
 		end
 	end
 
+	def delete_list_item
+		list_item = ListItem.find( delete_list_item_params[ :list_item_id ] )
+		@list = list_item.list
+		list_item.destroy
+
+		respond_to do |format|
+			format.js { render "delete_list_item" }
+		end
+	end
+
 	def mark_completed
 		list_item = ListItem.find( mark_completed_params[ :list_item_id ] )
 		list_item.mark_completed
@@ -76,6 +86,10 @@ class ToDoController < ApplicationController
 
 	def delete_list_params
 		params.permit( :id, :selected_id )
+	end
+
+	def delete_list_item_params
+		params.permit( :list_item_id )
 	end
 
 	def select_list_params
