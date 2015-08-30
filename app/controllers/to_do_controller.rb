@@ -40,9 +40,13 @@ class ToDoController < ApplicationController
 
 	def delete_list
 		@list = List.find( delete_list_params[ :id ] )
-		@list.destroy
-
 		@selected_list = List.find( delete_list_params[ :selected_id ] ) rescue nil
+
+		if @list == @selected_list or @lists.count == 1
+			@refreshMainSection = true
+		end
+
+		@list.destroy
 
 		respond_to do |format|
 			format.js { render "delete_list" }

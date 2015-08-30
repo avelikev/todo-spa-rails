@@ -1,17 +1,9 @@
 <div class="sideBar">
-	<%= render "sidebar" %>
+	<%= render "sidebar", all_lists: @lists %>
 </div>
 <div class="mainSection">
 	<div class="todoList">
-		<% if @lists.any? %>
-			<h2>
-				Select a list from the sidebar!
-			</h2>
-		<% else %>
-			<h2>
-				Use the sidebar to create a list!
-			</h2>
-		<% end %>
+		<%= render "helpfulMessage", all_lists: @lists %>
 	</div>
 	<div class="completedList">
 	</div>

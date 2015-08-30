@@ -1,5 +1,5 @@
 $('.sideBar').html(
-	'<%= escape_javascript( render( partial: 'sidebar' ) ) %>'
+	'<%= escape_javascript( render( partial: 'sidebar', locals:{ all_lists: @lists } ) ) %>'
 );
 
 $('.todoList').html(

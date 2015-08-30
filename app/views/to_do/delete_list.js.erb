@@ -1,7 +1,15 @@
 $('.sideBar').html(
-	'<%= escape_javascript( render( partial: 'sidebar' ) ) %>'
+	'<%= escape_javascript( render( partial: 'sidebar', locals:{ all_lists: @lists } ) ) %>'
 );
 
-<% if @selected_list !=  nil %>
+<% if @selected_list != nil %>
 	addSelectedClassToList( <%= @selected_list.id %> );
+<% end %>
+
+<% if @refreshMainSection == true %>
+	$('.todoList').html(
+		'<%= escape_javascript( render( partial: 'helpfulMessage', locals:{ all_lists: @lists } ) ) %>'
+	);
+
+	$('.completedList').html('');
 <% end %>
