@@ -22,11 +22,13 @@ h2 {
 	font-weight: normal;
 	font-size: 24px;
 	margin: 25px 10px;
+	word-wrap: break-word;
 }
 h3 {
 	font-weight: normal;
 	font-size: 19px;
 	margin: 25px 0px;
+	word-wrap: break-word;
 }
 
 
@@ -36,7 +38,7 @@ h3 {
 
 
 /* Sidebar */
-.sideBar {
+.sidebar {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -44,73 +46,85 @@ h3 {
 	width: 25%;
 	background-color: #80DEEA;
 	overflow: auto;
+	font-size: 16px;
 }
-.sideBar ul {
+.sidebar ul {
 	list-style-type: none;
 	padding: 0px 0px 0px 24px;
 }
-.sideBar li {
-	font-size: 16px;
-	box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2) inset;
-	overflow: hidden;
+.sidebar li {
+	box-shadow: 0px -1px 0px rgba( 0, 0, 0, 0.2 ) inset;
 }
-.sideBar .addNewListForm {
-	padding: 6px 40px 6px 24px;
-	line-height: 28px;
+.sidebar li:hover {
+	background-color: rgba( 255, 255, 255, .42 );
 }
-.sideBar .addNewListForm input {
-	float: right;
-	height: 24px;
-	width: 100%;
-	font-size: 16px;
-	margin: 4px;
-}
-.sideBar .addNewListForm div {
-	float: right;
-}
-.sideBar .addNewListForm button {
-	background-color: #0097A7;
-	color: #FFFFFF;
-	float: right;
-	padding: 6px 16px;
-	margin: 3px 4px;
-	border-radius: 10px;
-}
-.sideBar .selectedList {
-	background-color: #00BCD4;
-}
-.addNewList {
+.sidebar .sidebarItem {
 	cursor: pointer;
 	cursor: hand;
-	padding: 10px 0px 10px 48px;
-	line-height: 28px;
-}
-.addNewList img {
-	height: 11px;
-	width: 11px;
-}
-.viewList {
 	display: inline-block;
-	padding: 10px 0px 10px 48px;
 	line-height: 28px;
-	width: calc( 100% - 88px );
+	width: calc( 100% - 82px );
+	padding: 10px 0px 10px 42px;
+	word-wrap: break-word;
+}
+.sidebar .selectedSidebarItem {
+	background-color: rgba( 255, 255, 255, .6 );
+}
+.sidebar .selectedSidebarItem:hover {
+	background-color: rgba( 255, 255, 255, .6 );
+}
+.sidebar .deleteIcon {
 	cursor: pointer;
 	cursor: hand;
-}
-.deleteList {
+	display: inline-block;
 	float: right;
+	background-color: #E0F7FA;
+	border-radius: 15%;
+	box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.6 );
 	margin: 10px;
 	padding: 0px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-	border-radius: 15%;
-	background-color: #E0F7FA;
-	cursor: pointer;
-	cursor: hand;
 }
-.deleteList img {
+.sidebar .deleteIcon img {
 	height: 14px;
 	width: 14px;
 	padding: 4px 3px 2px 3px;
+}
+.sidebar .deleteIcon:hover {
+	background-color: #FF8A65;
+}
+.sidebar .addNewList {
+	cursor: pointer;
+	cursor: hand;
+	line-height: 28px;
+	padding: 10px 0px 10px 42px;
+}
+.sidebar .addNewList img {
+	height: 11px;
+	width: 11px;
+}
+.sidebar .newListForm {
+	padding: 6px 40px 6px 24px;
+}
+.sidebar .newListForm input {
+	height: 24px;
+	width: calc( 100% - 4px );
+	margin: 4px 0px;
+	padding: 0px;
+	font-size: 16px;
+}
+.sidebar .newListForm .buttonSection {
+	height: 30px;
+	width: 100%;
+}
+.sidebar .newListForm button {
+	float: right;
+	color: #FFFFFF;
+	background-color: #0097A7;
+	border-width: 1px;
+	border-radius: 4px;
+	outline: none;
+	margin: 3px 2px 3px 2px;
+	padding: 4px 10px;
 }
 
 
@@ -122,102 +136,117 @@ h3 {
 	height: 100%;
 	width: 75%;
 	background-color: #E0F7FA;
+	font-size: 16px;
 }
 .mainSection ul {
 	list-style-type: none;
-	padding: 0px;
 	margin: 0px 54px;
+	padding: 0px;
 }
 .mainSection li {
-	margin: 12px 0px;
+	background-color: #FFFFFF;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 5px;
-	background-color: #FFFFFF;
+	margin: 12px 0px;
 }
-.listItem {
-	padding: 10px 15px;
-	line-height: 22px;
-	font-size: 15px;
+.mainSection .listItem {
 	display: inline-block;
 	width: calc( 100% - 70px );
+	line-height: 22px;
+	padding: 10px 15px;
+	word-wrap: break-word;
 }
 
 
-/* To-Do Section */
+/* To-Do List */
 .todoList {
-	float: left;
+	position: absolute;
+	top: 0;
+	left: 0;
 	height: 100%;
 	width: 50%;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-	overflow: auto;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+	overflow-y: auto;
+	overflow-x: hidden;
 }
-.checkBox {
-	float: right;
-	margin: 10px;
-	padding: 0px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-	border-radius: 15%;
-	background-color: #E0F7FA;
+.todoList .checkBoxIcon {
 	cursor: pointer;
 	cursor: hand;
+	float: right;
+	background-color: #E0F7FA;
+	border-radius: 15%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	margin: 10px;
 }
-.checkBox img {
+.todoList .checkBoxIcon img {
 	height: 17px;
 	width: 17px;
 	padding: 3px 2px 0px 1px;
 }
-.addNewItem {
+.todoList .checkBoxIcon:hover{
+	background-color: #81C784;
+}
+.todoList .addNewListItem {
 	cursor: pointer;
 	cursor: hand;
 	display: inline-block;
+	padding: 8px 0px;
+	margin: 0px 0px 32px 0px;
 }
-.addNewItem img {
+.todoList .addNewListItem img {
 	height: 11px;
 	width: 11px;
 }
-.todoList .addNewItemForm {
-	padding: 10px 0px 10px 0px;
-	line-height: 28px;
+.todoList .addNewListItemForm {
 }
-.todoList .addNewItemForm input {
+.todoList .addNewListItemForm input {
 	height: 24px;
-	width: 100%;
+	width: calc( 100% - 4px );
+	margin: 4px 0px;
+	padding: 0px;
 	font-size: 16px;
 }
-.todoList .addNewItemForm div {
-	float: right;
-	padding: 6px 0px;
+.todoList .addNewListItemForm .buttonSection {
+	height: 36px;
+	width: 100%;
 }
-.todoList .addNewItemForm button {
-	background-color: #0097A7;
+.todoList .addNewListItemForm button {
+	float: right;
 	color: #FFFFFF;
-	float: right;
+	background-color: #0097A7;
+	border-width: 1px;
+	border-radius: 4px;
+	outline: none;
+	margin: 3px 2px 3px 4px;
 	padding: 6px 16px;
-	margin: 3px 4px;
-	border-radius: 10px;
 }
 
 
-/* Completed Section */
+/* Completed List */
 .completedList {
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
 	height: 100%;
 	width: 50%;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-	overflow: auto;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+	overflow-y: auto;
 }
-.deleteItem {
-	float: right;
-	margin: 10px;
-	padding: 0px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-	border-radius: 15%;
-	background-color: #E0F7FA;
+.completedList .deleteIcon {
 	cursor: pointer;
 	cursor: hand;
+	float: right;
+	background-color: #E0F7FA;
+	border-radius: 15%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	margin: 10px;
+	padding: 0px;
 }
-.deleteItem img {
+.completedList .deleteIcon:hover {
+	background-color: #FF8A65;
+}
+.completedList .deleteIcon img {
 	height: 14px;
 	width: 14px;
 	padding: 4px 3px 2px 3px;

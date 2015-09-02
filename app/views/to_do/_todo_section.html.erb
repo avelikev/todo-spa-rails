@@ -1,5 +1,5 @@
 <h2>
-	To-Do List
+	<%= current_list.name %>
 </h2>
 <ul>
 	<% current_list.list_items.each do |list_item| %>
@@ -8,21 +8,21 @@
 				<div class="listItem" data-list-item-id="<%= list_item.id %>">
 					<%= list_item.description %>
 				</div>
-				<div class="checkBox">
+				<div class="checkBoxIcon">
 					<img src="/icons/checkmark-round.png">
 				</div>
 			</li>
 		<% end %>
 	<% end %>
-	<div class="addNewItemForm hide" data-list-id="<%= current_list.id %>">
+	<div class="addNewListItemForm hide" data-list-id="<%= current_list.id %>">
 		<input onkeypress="return checkItemSubmit( event )" maxlength="255">
 		</input>
-		<div>
+		<div class="buttonSection">
 			<button class="saveButton"> Save </button>
 			<button class="cancelButton"> Cancel </button>
 		</div>
 	</div>
-	<div class="addNewItem">
+	<div class="addNewListItem">
 		<img src="/icons/plus-24-16.png">
 		Add New Item
 	</div>

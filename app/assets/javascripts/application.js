@@ -44,7 +44,8 @@ function selectList( selectedID ) {
 }
 
 function addNewList() {
-	var inputValue = $('.addNewListForm').find('input').val();
+	var inputValue = $('.newListForm').find('input').val();
+	$('.newListForm').find('input').val('');
 	var addListData = { "name": inputValue };
 	$.ajax({
 		type:"POST",
@@ -59,8 +60,9 @@ function addNewList() {
 }
 
 function addNewListItem() {
-	var itemDescription = $('.addNewItemForm').find('input').val();
-	var listID =  $('.addNewItemForm').attr('data-list-id');
+	var itemDescription = $('.addNewListItemForm').find('input').val();
+	$('.addNewListItemForm').find('input').val('');
+	var listID =  $('.addNewListItemForm').attr('data-list-id');
 	var addListItemData = { "list_id": listID, "description": itemDescription };
 	$.ajax({
 		type:"POST",
@@ -75,10 +77,10 @@ function addNewListItem() {
 }
 
 function deleteList( deletedID ) {
-	var selectedItem = $('.selectedList');
+	var selectedItem = $('.selectedSidebarItem');
 	var selectedID = null;
 	if ( selectedItem.length ) {
-		selectedID = selectedItem.first().find('.viewList').attr('data-list-id');
+		selectedID = selectedItem.first().find('.sidebarItem').attr('data-list-id');
 	}
 	var deleteListData = { "id": deletedID, "selected_id": selectedID };
 	$.ajax({
@@ -114,76 +116,69 @@ function checkListSubmit( e ) {
 }
 
 function checkItemSubmit( e ) {
-	var list_id = $( '.addNewItemForm' ).attr('data-list-id');
+	var list_id = $( '.addNewListItemForm' ).attr('data-list-id');
 	if ( e.keyCode == 13 ) {
 		addNewListItem();
 	}
 }
 
 function addSelectedClassToList( id ) {
-	$('.viewList[data-list-id='+id+']').parent().addClass('selectedList');
+	$('.sidebarItem[data-list-id='+id+']').parent().addClass('selectedSidebarItem');
 }
 
 function deselectAllLists() {
-	$('.selectedList').each( function() {
-		// weird jquery bug
-		// want to remove just selectedList class instead of removing all classes
-		// but it fails to remove the class
-		// apparently a common issue on jquery forums
-		// $(this).removeClass('selectedList');
-		$(this).removeClass();
-	} );
+	$('.selectedSidebarItem').removeClass('selectedSidebarItem');
 }
 
-$(document).on('click', '.checkBox', function(){
+$(document).on('click', '.checkBoxIcon', function(){
 	var listItemID = $(this).parent().find('.listItem').attr('data-list-item-id');
 	markCompleted( listItemID );
 });
 
-$(document).on('click', '.viewList', function(){
+$(document).on('click', '.sidebarItem', function(){
 	var selectedID = $(this).attr('data-list-id');
 	selectList( selectedID );
 });
 
-$(document).on('click', '.deleteList', function(){
-	var deletedID = $(this).parent().find('.viewList').attr('data-list-id');
+$(document).on('click', '.sidebar .deleteIcon', function(){
+	var deletedID = $(this).parent().find('.sidebarItem').attr('data-list-id');
 	deleteList( deletedID );
 });
 
-$(document).on('click', '.deleteItem', function(){
+$(document).on('click', '.deleteIcon', function(){
 	var deletedID = $(this).parent().find('.listItem').attr('data-list-item-id');
 	deleteListItem( deletedID );
 });
 
 $(document).on('click', '.addNewList', function(){
 	$('.addNewList').addClass('hide');
-	$('.addNewListForm').removeClass('hide');
-	$('.addNewListForm').find('input').focus();
+	$('.newListForm').removeClass('hide');
+	$('.newListForm').find('input').focus();
 });
 
-$(document).on('click', '.addNewListForm .cancelButton', function(){
+$(document).on('click', '.newListForm .cancelButton', function(){
 	$('.addNewList').removeClass('hide');
-	$('.addNewListForm').addClass('hide');
-	$('.addNewListForm').find('input').val("");
+	$('.newListForm').addClass('hide');
+	$('.newListForm').find('input').val("");
 });
 
-$(document).on('click', '.addNewListForm .saveButton', function(){
+$(document).on('click', '.newListForm .saveButton', function(){
 	addNewList();
 });
 
-$(document).on('click', '.addNewItem', function(){
-	$('.addNewItem').addClass('hide');
-	$('.addNewItemForm').removeClass('hide');
-	$('.addNewItemForm').find('input').focus();
+$(document).on('click', '.addNewListItem', function(){
+	$('.addNewListItem').addClass('hide');
+	$('.addNewListItemForm').removeClass('hide');
+	$('.addNewListItemForm').find('input').focus();
 });
 
-$(document).on('click', '.addNewItemForm .cancelButton', function(){
-	$('.addNewItem').removeClass('hide');
-	$('.addNewItemForm').addClass('hide');
-	$('.addNewItemForm').find('input').val("");
+$(document).on('click', '.addNewListItemForm .cancelButton', function(){
+	$('.addNewListItem').removeClass('hide');
+	$('.addNewListItemForm').addClass('hide');
+	$('.addNewListItemForm').find('input').val("");
 });
 
-$(document).on('click', '.addNewItemForm .saveButton', function(){
+$(document).on('click', '.addNewListItemForm .saveButton', function(){
 	addNewListItem();
 });
 
