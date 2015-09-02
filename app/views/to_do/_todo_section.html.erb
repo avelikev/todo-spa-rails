@@ -15,7 +15,7 @@
 		<% end %>
 	<% end %>
 	<div class="addNewListItemForm hide" data-list-id="<%= current_list.id %>">
-		<input onkeypress="return checkItemSubmit( event )" maxlength="255">
+		<input onkeypress="return checkListItemSubmit( event )" maxlength="255" placeholder="Item Description">
 		</input>
 		<div class="buttonSection">
 			<button class="saveButton"> Save </button>

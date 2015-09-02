@@ -30,8 +30,6 @@ h3 {
 	margin: 25px 0px;
 	word-wrap: break-word;
 }
-
-
 .hide {
 	display: none !important;
 }
@@ -96,7 +94,7 @@ h3 {
 	cursor: pointer;
 	cursor: hand;
 	line-height: 28px;
-	padding: 10px 0px 10px 42px;
+	margin: 10px 0px 48px 42px;
 }
 .sidebar .addNewList img {
 	height: 11px;
@@ -192,13 +190,14 @@ h3 {
 	cursor: hand;
 	display: inline-block;
 	padding: 8px 0px;
-	margin: 0px 0px 32px 0px;
+	margin: 0px 0px 48px 0px;
 }
 .todoList .addNewListItem img {
 	height: 11px;
 	width: 11px;
 }
 .todoList .addNewListItemForm {
+	margin: 0px 0px 32px 0px;
 }
 .todoList .addNewListItemForm input {
 	height: 24px;
@@ -251,10 +250,3 @@ h3 {
 	width: 14px;
 	padding: 4px 3px 2px 3px;
 }
-
-
-
-
-
-
-

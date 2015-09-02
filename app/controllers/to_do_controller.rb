@@ -6,7 +6,7 @@ class ToDoController < ApplicationController
 	end
 
 	def select_list
-		@list = List.find( select_list_params[ :id ] )
+		@list = List.find( select_list_params[ :list_id ] )
 
 		respond_to do |format|
 			format.js { render "select_list" }
@@ -39,7 +39,7 @@ class ToDoController < ApplicationController
 	end
 
 	def delete_list
-		@list = List.find( delete_list_params[ :id ] )
+		@list = List.find( delete_list_params[ :list_id ] )
 		@selected_list = List.find( delete_list_params[ :selected_id ] ) rescue nil
 
 		if @list == @selected_list or @lists.count == 1
@@ -80,6 +80,10 @@ class ToDoController < ApplicationController
 		@lists = List.all
 	end
 
+	def select_list_params
+		params.permit( :list_id )
+	end
+
 	def add_list_params
 		params.permit( :name )
 	end
@@ -89,15 +93,11 @@ class ToDoController < ApplicationController
 	end
 
 	def delete_list_params
-		params.permit( :id, :selected_id )
+		params.permit( :list_id, :selected_id )
 	end
 
 	def delete_list_item_params
 		params.permit( :list_item_id )
-	end
-
-	def select_list_params
-		params.permit( :id )
 	end
 
 	def mark_completed_params

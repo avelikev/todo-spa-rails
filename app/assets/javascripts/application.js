@@ -15,22 +15,99 @@
 //= require turbolinks
 //= require_tree .
 
-function markCompleted( listItemID ) {
-	var markCompletedData = { "list_item_id": listItemID };
-	$.ajax({
-		type:"POST",
-		url:"/mark_completed",
-		data: markCompletedData,
-		success:function () {
-		},
-		error:function (xhr, msg, error) {
-			alert( "Something went wrong." );
-		}
-	});
+
+//
+// LISTENERS
+//
+
+// Sidebar
+
+$(document).on('click', '.sidebar .sidebarItem', function(){
+	var selectedID = $(this).attr('data-list-id');
+	selectList( selectedID );
+});
+
+$(document).on('click', '.sidebar .deleteIcon', function(){
+	var deletedID = $(this).parent().find('.sidebarItem').attr('data-list-id');
+	deleteList( deletedID );
+});
+
+$(document).on('click', '.sidebar .addNewList', function(){
+	$('.addNewList').addClass('hide');
+	$('.newListForm').removeClass('hide');
+	$('.newListForm').find('input').focus();
+});
+
+$(document).on('click', '.sidebar .newListForm .cancelButton', function(){
+	$('.addNewList').removeClass('hide');
+	$('.newListForm').addClass('hide');
+	$('.newListForm').find('input').val('');
+});
+
+$(document).on('click', '.sidebar .newListForm .saveButton', function(){
+	addNewList();
+});
+
+// Main Section
+
+$(document).on('click', '.todoList .checkBoxIcon', function(){
+	var listItemID = $(this).parent().find('.listItem').attr('data-list-item-id');
+	markCompleted( listItemID );
+});
+
+$(document).on('click', '.todoList .addNewListItem', function(){
+	$('.addNewListItem').addClass('hide');
+	$('.addNewListItemForm').removeClass('hide');
+	$('.addNewListItemForm').find('input').focus();
+});
+
+$(document).on('click', '.todoList .addNewListItemForm .cancelButton', function(){
+	$('.addNewListItem').removeClass('hide');
+	$('.addNewListItemForm').addClass('hide');
+	$('.addNewListItemForm').find('input').val('');
+});
+
+$(document).on('click', '.todoList .addNewListItemForm .saveButton', function(){
+	addNewListItem();
+});
+
+$(document).on('click', '.completedList .deleteIcon', function(){
+	var deletedID = $(this).parent().find('.listItem').attr('data-list-item-id');
+	deleteListItem( deletedID );
+});
+
+
+//
+// HELPERS
+//
+
+function deselectAllLists() {
+	$('.selectedSidebarItem').removeClass('selectedSidebarItem');
 }
 
+function addSelectedClassToList( id ) {
+	$('.sidebarItem[data-list-id='+id+']').parent().addClass('selectedSidebarItem');
+}
+
+function checkListSubmit( e ) {
+	if ( e.keyCode == 13 ) {
+		addNewList();
+	}
+}
+
+function checkListItemSubmit( e ) {
+	var list_id = $( '.addNewListItemForm' ).attr('data-list-id');
+	if ( e.keyCode == 13 ) {
+		addNewListItem();
+	}
+}
+
+//
+// AJAX
+//
+
 function selectList( selectedID ) {
-	var selectListData = { "id": selectedID };
+	var selectListData = { "list_id": selectedID };
 	$.ajax({
 		type:"GET",
 		url:"/select_list",
@@ -82,7 +159,7 @@ function deleteList( deletedID ) {
 	if ( selectedItem.length ) {
 		selectedID = selectedItem.first().find('.sidebarItem').attr('data-list-id');
 	}
-	var deleteListData = { "id": deletedID, "selected_id": selectedID };
+	var deleteListData = { "list_id": deletedID, "selected_id": selectedID };
 	$.ajax({
 		type:"POST",
 		url:"/delete_list",
@@ -109,79 +186,16 @@ function deleteListItem( deletedID ) {
 	});
 }
 
-function checkListSubmit( e ) {
-	if ( e.keyCode == 13 ) {
-		addNewList();
-	}
+function markCompleted( listItemID ) {
+	var markCompletedData = { "list_item_id": listItemID };
+	$.ajax({
+		type:"POST",
+		url:"/mark_completed",
+		data: markCompletedData,
+		success:function () {
+		},
+		error:function (xhr, msg, error) {
+			alert( "Something went wrong." );
+		}
+	});
 }
-
-function checkItemSubmit( e ) {
-	var list_id = $( '.addNewListItemForm' ).attr('data-list-id');
-	if ( e.keyCode == 13 ) {
-		addNewListItem();
-	}
-}
-
-function addSelectedClassToList( id ) {
-	$('.sidebarItem[data-list-id='+id+']').parent().addClass('selectedSidebarItem');
-}
-
-function deselectAllLists() {
-	$('.selectedSidebarItem').removeClass('selectedSidebarItem');
-}
-
-$(document).on('click', '.checkBoxIcon', function(){
-	var listItemID = $(this).parent().find('.listItem').attr('data-list-item-id');
-	markCompleted( listItemID );
-});
-
-$(document).on('click', '.sidebarItem', function(){
-	var selectedID = $(this).attr('data-list-id');
-	selectList( selectedID );
-});
-
-$(document).on('click', '.sidebar .deleteIcon', function(){
-	var deletedID = $(this).parent().find('.sidebarItem').attr('data-list-id');
-	deleteList( deletedID );
-});
-
-$(document).on('click', '.deleteIcon', function(){
-	var deletedID = $(this).parent().find('.listItem').attr('data-list-item-id');
-	deleteListItem( deletedID );
-});
-
-$(document).on('click', '.addNewList', function(){
-	$('.addNewList').addClass('hide');
-	$('.newListForm').removeClass('hide');
-	$('.newListForm').find('input').focus();
-});
-
-$(document).on('click', '.newListForm .cancelButton', function(){
-	$('.addNewList').removeClass('hide');
-	$('.newListForm').addClass('hide');
-	$('.newListForm').find('input').val("");
-});
-
-$(document).on('click', '.newListForm .saveButton', function(){
-	addNewList();
-});
-
-$(document).on('click', '.addNewListItem', function(){
-	$('.addNewListItem').addClass('hide');
-	$('.addNewListItemForm').removeClass('hide');
-	$('.addNewListItemForm').find('input').focus();
-});
-
-$(document).on('click', '.addNewListItemForm .cancelButton', function(){
-	$('.addNewListItem').removeClass('hide');
-	$('.addNewListItemForm').addClass('hide');
-	$('.addNewListItemForm').find('input').val("");
-});
-
-$(document).on('click', '.addNewListItemForm .saveButton', function(){
-	addNewListItem();
-});
-
-
-
-
